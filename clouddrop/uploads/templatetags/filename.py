@@ -7,4 +7,4 @@ register = template.Library()
 
 @register.filter
 def filename(value):
-    return os.path.basename(value.file.name)
+    return os.path.basename(value.data.name)
