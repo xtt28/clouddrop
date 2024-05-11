@@ -1,6 +1,6 @@
+import os
 from django.contrib.auth import get_user_model
 from django.db import models
-import os
 
 def user_directory_path(instance, filename):
     return f'user_{instance.user.id}/{filename}'
