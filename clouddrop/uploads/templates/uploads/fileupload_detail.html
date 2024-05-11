@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load filename %}
+
+{% block title %}
+{% blocktrans trimmed with name=upload|filename %}
+Download file "{{ name }}"
+{% endblocktrans %}
+{% endblock title %}
+
+{% block content %}
+<div class="uk-card">
+    <h1 class="uk-card-title">{{ upload|filename }}</h1>
+    <ul>
+        <li>
+            {% blocktrans with size=upload.data.size|filesizeformat trimmed %}
+            Size: {{ size }}
+            {% endblocktrans %}
+        </li>
+        <li>
+            {% blocktrans with created_at=upload.created_at trimmed %}
+            Created {{ created_at }}
+            {% endblocktrans %}
+        </li>
+        <li>
+            {{ upload.public|yesno:_("Public,Private") }}
+        </li>
+    </ul>
+    <a href="#" class="uk-button uk-button-primary">
+        <span uk-icon="icon: download"></span>&nbsp;
+        {% trans "Download" %}
+    </a>
+</div>
+{% endblock content %}
