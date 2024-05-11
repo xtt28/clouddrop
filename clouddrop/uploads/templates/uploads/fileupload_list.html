@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Your uploads" %}{% endblock title %}
+
+{% block content %}
+    <h1>{% trans "Your uploads" %}</h1>
+    <a href="#" class="uk-button uk-button-primary"><span uk-icon="icon: plus"></span>&nbsp;{% trans "Create new" %}</a>
+    <table class="uk-table">
+        <caption>
+            {% blocktrans trimmed count count=uploads|length %}
+            Showing {{ count }} item
+            {% plural %}
+            Showing {{ count }} items
+            {% endblocktrans %}
+        </caption>
+        <thead>
+            <tr>
+                <th>{% trans "File name" %}</th>
+                <th>{% trans "Created" %}</th>
+                <th>{% trans "Public?" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for upload in uploads %}
+            <tr>
+                <td>{{ upload.data.name }}</td>
+                <td>{{ upload.created_at }}</td>
+                <td>{{ upload.public|yesno:_("Yes,No") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
