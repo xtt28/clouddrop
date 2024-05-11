@@ -6,7 +6,10 @@
 
 {% block content %}
     <h1>{% trans "Your uploads" %}</h1>
-    <a href="#" class="uk-button uk-button-primary"><span uk-icon="icon: plus"></span>&nbsp;{% trans "Create new" %}</a>
+    <a href="{% url "uploads:create" %}" class="uk-button uk-button-primary">
+        <span uk-icon="icon: plus"></span>&nbsp;
+        {% trans "Create new" %}
+    </a>
     <table class="uk-table">
         <caption>
             {% blocktrans trimmed count count=uploads|length %}
