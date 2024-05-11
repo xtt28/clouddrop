@@ -127,3 +127,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Settings added by CloudDrop application
 
 AUTH_USER_MODEL = 'users.CUser'
+
+MEDIA_ROOT = 'uploads'
