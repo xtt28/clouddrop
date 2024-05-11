@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +11,24 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+    <nav class="uk-navbar-container">
+        <div class="uk-container">
+            <div uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="#" aria-label="Back to Home">CloudDrop</a>
+                </div>
+                <div class="uk-navbar-right">
+                    <div class="uk-navbar-item">
+                        {% if user.is_authenticated %}
+                        <a class="uk-button uk-button-default" href="#"><span uk-icon="icon: user"></span>&nbsp;{% trans "Your profile" %}</a>
+                        {% else %}
+                        <a class="uk-button uk-button-default" href="#"><span uk-icon="icon: sign-in"></span>&nbsp;{% trans "Sign in" %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
     <main class="uk-container">
         {% block content %}{% endblock content %}
     </main>
