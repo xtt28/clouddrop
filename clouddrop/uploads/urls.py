@@ -5,6 +5,7 @@ from .views import (
     FileUploadDetailView,
     FileUploadDownloadView,
     FileUploadListView,
+    FileUploadUpdateView
 )
 
 app_name = 'uploads'
@@ -14,4 +15,5 @@ urlpatterns = [
     path('<int:pk>', FileUploadDetailView.as_view(), name='detail'),
     path('<int:pk>/download', FileUploadDownloadView.as_view(), name='download'),
     path('<int:pk>/delete', FileUploadDeleteView.as_view(), name='delete'),
+    path('<int:pk>/update', FileUploadUpdateView.as_view(), name='update'),
 ]

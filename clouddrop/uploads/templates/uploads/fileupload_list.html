@@ -38,7 +38,7 @@
                     <td>{{ upload.created_at }}</td>
                     <td>{{ upload.public|yesno:_("Yes,No") }}</td>
                     <td>
-                        <a href="" uk-icon="pencil"></a>
+                        <a href="{% url 'uploads:update' upload.pk %}" uk-icon="pencil"></a>
                         <a href="{% url 'uploads:delete' upload.pk %}" uk-icon="trash"></a>
                     </td>
                 </tr>

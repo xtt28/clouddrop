@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load filename %}
+
+{% block title %}{% trans "Change visibility" %}{% endblock title %}
+
+{% block content %}
+<h1>{% trans "Change visibility" %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+    <div class="uk-alert-danger">
+        {{ form.errors }}
+    </div>
+    {% endif %}
+    <div class="uk-margin">
+        <label>
+            <input type="checkbox" name="public" class="uk-checkbox" {% if upload.public %}checked{% endif %}>
+            {% trans "Make this file public" %}
+        </label>
+    </div>
+    <button class="uk-button uk-button-primary">
+        <span uk-icon="icon: check"></span>&nbsp;
+        {% trans "Save" %}
+    </button>
+</form>
+{% endblock content %}

@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from .models import FileUpload
 
@@ -54,6 +54,16 @@ class FileUploadDeleteView(LoginRequiredMixin, DeleteView):
     model = FileUpload
     success_url = reverse_lazy('uploads:list')
     context_object_name = 'upload'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user.id)
+    
+
+class FileUploadUpdateView(LoginRequiredMixin, UpdateView):
+    model = FileUpload
+    context_object_name = 'upload'
+    fields = ('public',)
+    template_name_suffix = '_update'
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user.id)
