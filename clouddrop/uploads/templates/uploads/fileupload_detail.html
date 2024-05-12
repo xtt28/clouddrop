@@ -26,7 +26,7 @@ Download file "{{ name }}"
             {{ upload.public|yesno:_("Public,Private") }}
         </li>
     </ul>
-    <a href="#" class="uk-button uk-button-primary">
+    <a href="{% url "uploads:download" upload.pk %}" class="uk-button uk-button-primary">
         <span uk-icon="icon: download"></span>&nbsp;
         {% trans "Download" %}
     </a>
