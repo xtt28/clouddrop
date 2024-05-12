@@ -29,7 +29,9 @@
         <tbody>
             {% for upload in uploads %}
             <tr>
-                <td>{{ upload|filename }}</td>
+                <td>
+                    <a href="{{ upload.get_absolute_url }}">{{ upload|filename }}</a>
+                </td>
                 <td>{{ upload.data.size|filesizeformat }}</td>
                 <td>{{ upload.created_at }}</td>
                 <td>{{ upload.public|yesno:_("Yes,No") }}</td>
