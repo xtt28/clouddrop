@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>{% trans "Your uploads" %}</h1>
-    <a href="{% url "uploads:create" %}" class="uk-button uk-button-primary">
+    <a href="{% url "uploads:create" %}" class="uk-button uk-button-primary uk-margin-bottom">
         <span uk-icon="icon: plus"></span>&nbsp;
         {% trans "Create new" %}
     </a>
@@ -25,6 +25,7 @@
                     <th>{% trans "Size" %}</th>
                     <th>{% trans "Created" %}</th>
                     <th>{% trans "Public?" %}</th>
+                    <th>{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,10 @@
                     <td>{{ upload.data.size|filesizeformat }}</td>
                     <td>{{ upload.created_at }}</td>
                     <td>{{ upload.public|yesno:_("Yes,No") }}</td>
+                    <td>
+                        <a href="" uk-icon="pencil"></a>
+                        <a href="" uk-icon="trash"></a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
