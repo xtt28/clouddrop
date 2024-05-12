@@ -7,7 +7,32 @@
 <h1>{% trans "Upload a file" %}</h1>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
+    {% if form.errors %}
+    <div class="uk-alert-danger">
+        {{ form.errors }}
+    </div>
+    {% endif %}
+    <div class="uk-margin">
+        <div uk-form-custom="target: true">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: upload"></span>
+                <input type="file" aria-label="{% trans "Select a file" %}" name="data" required>
+                <input
+                    class="uk-input uk-form-width-large"
+                    type="text"
+                    placeholder="{% trans "Drop a file here or click to choose" %}"
+                    aria-label="{% trans "Select a file" %}"
+                    disabled
+                >
+            </div>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label>
+            <input type="checkbox" name="public" class="uk-checkbox">
+            {% trans "Make this file public" %}
+        </label>
+    </div>
     <button class="uk-button uk-button-primary">
         <span uk-icon="icon: plus"></span>&nbsp;
         {% trans "Create" %}
