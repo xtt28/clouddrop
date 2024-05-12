@@ -46,4 +46,22 @@
             </tbody>
         </table>
     </div>
+    <ul class="uk-pagination">
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}">
+                <span uk-pagination-previous></span> {% trans "Previous" %}
+            </a>
+        </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li class="uk-margin-auto-left">
+            <a href="?page={{ page_obj.next_page_number }}">
+                {% trans "Next" %}
+                <span class="uk-margin-small-left" uk-pagination-next>
+                </span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
 {% endblock content %}
