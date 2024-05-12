@@ -50,7 +50,7 @@ class FileUploadDownloadView(View):
         return FileResponse(upload.data.open('rb'), as_attachment=True)
     
 
-class FileUploadDeleteView(DeleteView):
+class FileUploadDeleteView(LoginRequiredMixin, DeleteView):
     model = FileUpload
     success_url = reverse_lazy('uploads:list')
     context_object_name = 'upload'
