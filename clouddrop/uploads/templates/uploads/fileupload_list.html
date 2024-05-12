@@ -10,33 +10,35 @@
         <span uk-icon="icon: plus"></span>&nbsp;
         {% trans "Create new" %}
     </a>
-    <table class="uk-table">
-        <caption>
-            {% blocktrans trimmed count count=uploads|length %}
-            Showing {{ count }} item
-            {% plural %}
-            Showing {{ count }} items
-            {% endblocktrans %}
-        </caption>
-        <thead>
-            <tr>
-                <th>{% trans "File name" %}</th>
-                <th>{% trans "Size" %}</th>
-                <th>{% trans "Created" %}</th>
-                <th>{% trans "Public?" %}</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for upload in uploads %}
-            <tr>
-                <td>
-                    <a href="{{ upload.get_absolute_url }}">{{ upload|filename }}</a>
-                </td>
-                <td>{{ upload.data.size|filesizeformat }}</td>
-                <td>{{ upload.created_at }}</td>
-                <td>{{ upload.public|yesno:_("Yes,No") }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="uk-overflow-auto">
+        <table class="uk-table">
+            <caption>
+                {% blocktrans trimmed count count=uploads|length %}
+                Showing {{ count }} item
+                {% plural %}
+                Showing {{ count }} items
+                {% endblocktrans %}
+            </caption>
+            <thead>
+                <tr>
+                    <th>{% trans "File name" %}</th>
+                    <th>{% trans "Size" %}</th>
+                    <th>{% trans "Created" %}</th>
+                    <th>{% trans "Public?" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for upload in uploads %}
+                <tr>
+                    <td>
+                        <a href="{{ upload.get_absolute_url }}">{{ upload|filename }}</a>
+                    </td>
+                    <td>{{ upload.data.size|filesizeformat }}</td>
+                    <td>{{ upload.created_at }}</td>
+                    <td>{{ upload.public|yesno:_("Yes,No") }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}
