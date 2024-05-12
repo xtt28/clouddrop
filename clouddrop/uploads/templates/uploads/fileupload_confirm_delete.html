@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load filename %}
+
+{% block title %}{% trans "Confirm deletion" %}{% endblock title %}
+
+{% block content %}
+<h1>{% trans "Confirm deletion" %}</h1>
+<form method="post">
+    <p>
+        {% blocktrans trimmed with name=upload|filename %}
+        Are you sure you want to delete the file "{{ name }}"? This action can't
+        be undone.
+        {% endblocktrans %}
+    </p>
+    {% csrf_token %}
+    {% if form.errors %}
+    <div class="uk-alert-danger">
+        {{ form.errors }}
+    </div>
+    {% endif %}
+    <button class="uk-button uk-button-primary">
+        <span uk-icon="icon: trash"></span>&nbsp;
+        {% trans "Confirm" %}
+    </button>
+</form>
+{% endblock content %}
