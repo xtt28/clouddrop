@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Upload and share files for free" %}{% endblock title %}
+
+{% block content %}
+<h1>{% trans "Upload and share files for free" %}</h1>
+<p>
+    {% blocktrans trimmed %}
+    Easily upload files to the cloud and share them in one click. Create a free
+    account to get started.
+    {% endblocktrans %}
+</p>
+<a href="{% url "account_signup" %}" class="uk-button uk-button-primary">
+    <span uk-icon="icon: user"></span>&nbsp;
+    {% trans "Sign up" %}
+</a>
+{% endblock content %}
